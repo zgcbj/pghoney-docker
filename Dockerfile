@@ -67,7 +67,7 @@ RUN set -eux; \
         apk del git && \
         rm -rf /pghoney/src/pghoney/.git && \
 	cd /pghoney/src/pghoney &&  go build && \
-	mkdir -p /pghonebin/ && \
+	mkdir -p /pghoneybin/ && \
 	cp pghoney /pghoneybin && \
         cp /pghoney/src/pghoney/pghoney.conf.sample /pghoneybin/pghoney.conf && \
 	rm -rf /pghoney && \
