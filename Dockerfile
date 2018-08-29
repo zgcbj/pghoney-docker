@@ -64,7 +64,7 @@ ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 WORKDIR $GOPATH
 #FROM golang:1.8
-RUN apk add git && clone https://github.com/betheroot/pghoney.git /pghoney/src/pghoney && \
+RUN apk add git && git clone https://github.com/betheroot/pghoney.git /pghoney/src/pghoney && \
     export GOPATH=/pghoney && \
     cd /pghoney/ && \
     go get ./... && \
