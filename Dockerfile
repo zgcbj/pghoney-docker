@@ -64,10 +64,11 @@ ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 WORKDIR $GOPATH
 #FROM golang:1.8
-RUN apk add git && clone https://github.com/betheroot/pghoney.git /pghoney/src/pghoney 
-RUN export GOPATH=/pghoney && \
+RUN apk add git && clone https://github.com/betheroot/pghoney.git /pghoney/src/pghoney && \
+    export GOPATH=/pghoney && \
     cd /pghoney/ && \
     go get ./... && \
     cp /pghoney/src/pghoney/pghoney.conf.sample /pghoney/src/pghoney/pghoney.conf && \
-    apk del git
+    apk del git && \
+    rm -rf /pghoney/src/pghoney/.git
 CMD cd /pghoney/src/pghoney && go run *.go
