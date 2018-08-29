@@ -57,11 +57,12 @@ RUN set -eux; \
 	\
 	export PATH="/usr/local/go/bin:$PATH"; \
 	go version && \
-        export GOPATH=/pghoney && \
+        export GOPATH=/go && \
 	export PATH=$GOPATH/bin:/usr/local/go/bin:$PATH && \
  	mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH" && \
  	apk add git && git clone https://github.com/betheroot/pghoney.git /pghoney/src/pghoney && \
         cd /pghoney/ && \
+        export GOPATH=/pghoney && \
         go get ./... && \
         apk del git && \
         rm -rf /pghoney/src/pghoney/.git && \
