@@ -71,5 +71,7 @@ RUN set -eux; \
 	cp pghoney /pghoneybin && \
         cp /pghoney/src/pghoney/pghoney.conf.sample /pghoneybin/pghoney.conf && \
 	rm -rf /pghoney && \
-	rm -rf /usr/local/go
+	rm -rf /usr/local/go && \
+	rm -rf /var/cache && \
+	rm -rf  /root/.cache 
 CMD  /pghoneybin/pghoney
