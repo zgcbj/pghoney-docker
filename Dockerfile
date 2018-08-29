@@ -1,7 +1,6 @@
 #FROM golang:alpine
 FROM golang:1.8
-RUN apk add git && \
-    git clone https://github.com/betheroot/pghoney.git /pghoney/src/pghoney 
+RUN git clone https://github.com/betheroot/pghoney.git /pghoney/src/pghoney 
 RUN export GOPATH=/pghoney && \
     cd /pghoney/ && \
     go get ./... && \
