@@ -71,4 +71,5 @@ RUN apk add git && git clone https://github.com/betheroot/pghoney.git /pghoney/s
     cp /pghoney/src/pghoney/pghoney.conf.sample /pghoney/src/pghoney/pghoney.conf && \
     apk del git && \
     rm -rf /pghoney/src/pghoney/.git
+ENV GOPATH /pghoney
 CMD cd /pghoney/src/pghoney && go run *.go
