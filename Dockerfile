@@ -56,19 +56,19 @@ RUN set -eux; \
 	apk del .build-deps; \
 	\
 	export PATH="/usr/local/go/bin:$PATH"; \
-	go version
-
-ENV GOPATH /go
-ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
-
-RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
-WORKDIR $GOPATH
-#FROM golang:1.8
-RUN apk add git && git clone https://github.com/betheroot/pghoney.git /pghoney/src/pghoney && \
-    export GOPATH=/pghoney && \
-    cd /pghoney/ && \
-    go get ./... && \
-    cp /pghoney/src/pghoney/pghoney.conf.sample /pghoney/src/pghoney/pghoney.conf && \
-    apk del git && \
-    rm -rf /pghoney/src/pghoney/.git
-CMD cd /pghoney/src/pghoney && go run *.go
+	go version && \
+	export PATH=$GOPATH/bin:/usr/local/go/bin:$PATH && \
+ 	mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH" && \
+ 	apk add git && git clone https://github.com/betheroot/pghoney.git /pghoney/src/pghoney && \
+        export GOPATH=/pghoney && \
+        cd /pghoney/ && \
+        go get ./... && \
+        apk del git && \
+        rm -rf /pghoney/src/pghoney/.git && \
+	cd /pghoney/src/pghoney &&  go build \
+	mkdir -p /pghonebin/ && \
+	cp pghoney /pghoneybin && \
+        cp /pghoney/src/pghoney/pghoney.conf.sample /pghoneybin/pghoney.conf && \
+	rm -rf /pghoney && \
+	rm -rf /usr/local/go
+CMD  /pghoneybin/pghoney
