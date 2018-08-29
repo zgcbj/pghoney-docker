@@ -3,5 +3,4 @@ RUN apk add git && \
     git clone https://github.com/betheroot/pghoney.git && \
     cd pghoney && \
     go get ./...
-WORKDIR /go/pghoney
-CMD go run *.go
+CMD go run pghoney/*.go
